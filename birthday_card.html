@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Brother!</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #090a0b;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+    
+        .glass-card {
+            background: rgba(11, 13, 18, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .text-glow-gold {
+            text-shadow: 0 0 12px rgba(234, 179, 8, 0.6),
+                         0 0 24px rgba(234, 179, 8, 0.3),
+                         0 0 36px rgba(217, 119, 6, 0.2);
+        }
+
+        .text-glow-amber {
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+        }
+
+    
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07080a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 3px;
+        }
+
+    
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .btn-shimmer {
+            background: linear-gradient(90deg, #d97706, #f59e0b, #fbbf24, #f59e0b, #d97706);
+            background-size: 200% 100%;
+            animation: shimmer 4s infinite linear;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+        }
+        .btn-shimmer:hover {
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.7);
+        }
+
+    
+        .glow-spot-1 {
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.15) 0%, rgba(0,0,0,0) 70%);
+        }
+        .glow-spot-2 {
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, rgba(0,0,0,0) 70%);
+        }
+
+        
+        .cursor-blink::after {
+            content: '|';
+            animation: blink 1s infinite;
+            color: #fbbf24;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="min-h-screen relative flex flex-col justify-between items-center selection:bg-amber-500 selection:text-black">
+    <audio id="bgMusic" src=" Happy Birthday song!!!.mp3" loop></audio>
+    <div class="fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full glow-spot-1 pointer-events-none z-0"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full glow-spot-2 pointer-events-none z-0"></div>
+
+
+    <canvas id="bgCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+
+    <header class="w-full max-w-5xl px-6 py-6 z-20 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <span class="w-3 h-3 rounded-full bg-amber-500 animate-pulse"></span>
+            <span class="font-cinzel text-xs tracking-widest text-amber-200/70 uppercase">Special Edition</span>
+        </div>
+
+        
+        <button id="audioBtn" class="glass-card px-4 py-2 rounded-full flex items-center space-x-3 text-xs tracking-wider text-amber-200 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95 group">
+            <i id="audioIcon" class="fa-solid fa-music text-amber-400 group-hover:rotate-12 transition-transform"></i>
+            <span id="audioText">Play Ambient Music</span>
+        </button>
+    </header>
+
+    
+    <main class="w-full max-w-4xl px-4 py-4 z-10 flex flex-col items-center justify-center my-auto">
+        
+        
+        <div class="glass-card w-full rounded-3xl p-6 sm:p-10 flex flex-col items-center text-center relative overflow-hidden my-4 border border-amber-500/20">
+            
+            
+            <div class="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-amber-500/40 rounded-tl-lg pointer-events-none"></div>
+            <div class="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-amber-500/40 rounded-tr-lg pointer-events-none"></div>
+            <div class="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-amber-500/40 rounded-bl-lg pointer-events-none"></div>
+            <div class="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-amber-500/40 rounded-br-lg pointer-events-none"></div>
+
+    
+            <div class="mb-4">
+                <p class="text-xs sm:text-sm font-cinzel tracking-[0.3em] text-amber-400 uppercase mb-1">To My Dearest</p>
+                <h1 class="font-cinzel text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 text-glow-gold">
+                    HAPPY BIRTHDAY
+                </h1>
+                <h2 class="font-cinzel text-xl sm:text-2xl font-semibold tracking-widest text-amber-300 mt-1 uppercase text-glow-amber">
+                    MY BROTHER
+                </h2>
+            </div>
+
+            
+            <div class="relative my-4 w-full max-w-[340px] sm:max-w-[420px] aspect-square flex items-center justify-center">
+            
+                <canvas id="flowerCanvas" class="w-full h-full rounded-2xl cursor-pointer relative z-10" title="Click or move mouse to interact!"></canvas>
+                
+                
+                <div class="absolute bottom-2 inset-x-0 mx-auto text-center pointer-events-none z-20">
+                    <span class="text-[10px] tracking-widest text-amber-300/60 uppercase font-light bg-black/40 px-3 py-1 rounded-full backdrop-blur-md">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Move or click inside to interact
+                    </span>
+                </div>
+            </div>
+
+        
+            <div class="w-full max-w-xl my-4 bg-black/30 rounded-2xl p-5 border border-amber-500/10 backdrop-blur-sm">
+                <p id="typedMessage" class="text-sm sm:text-base md:text-lg leading-relaxed text-slate-200 font-light min-h-[4.5rem] cursor-blink flex items-center justify-center">
+                    
+                </p>
+            </div>
+
+            
+            <div class="mt-4 flex flex-wrap gap-4 justify-center items-center">
+                <button id="celebrateBtn" class="btn-shimmer text-slate-950 font-bold px-8 py-3.5 rounded-full text-xs sm:text-sm uppercase tracking-wider transition-transform duration-300 hover:scale-105 active:scale-95 flex items-center space-x-2">
+                    <i class="fa-solid fa-champagne-glasses"></i>
+                    <span>Release Celebration Fireworks</span>
+                </button>
+
+                <button id="rearrangeBtn" class="glass-card hover:bg-amber-500/10 text-amber-300 border border-amber-500/30 font-medium px-6 py-3.5 rounded-full text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95 flex items-center space-x-2">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    <span>Re-Assemble Bloom</span>
+                </button>
+            </div>
+
+        </div>
+    </main>
+    <footer class="w-full py-4 text-center z-10">
+        <p class="text-xs text-slate-500 tracking-widest uppercase">
+            Crafted with <i class="fa-solid fa-heart text-amber-500 mx-1"></i> for an Extraordinary Brother
+        </p>
+    </footer>
+
+
+    <script>
+       
+        class AmbientAudio {
+            constructor() {
+                this.ctx = null;
+                this.isPlaying = false;
+                this.timer = null;
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    this.ctx = new AudioContext();
+                }
+            }
+
+            playChord() {
+                if (!this.isPlaying || !this.ctx) return;
+
+                // Pentatonic warm chords for gentle ambient music
+                const scale = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25];
+                const note1 = scale[Math.floor(Math.random() * scale.length)];
+                const note2 = scale[Math.floor(Math.random() * scale.length)];
+
+                this.playNote(note1, 3.5);
+                this.playNote(note2, 4.0);
+
+                // Schedule next soft note
+                this.timer = setTimeout(() => this.playChord(), 2000 + Math.random() * 2000);
+            }
+
+            playNote(freq, duration) {
+                try {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+
+                    // Soft envelope fade in / fade out
+                    gain.gain.setValueAtTime(0, this.ctx.currentTime);
+                    gain.gain.linearRampToValueAtTime(0.08, this.ctx.currentTime + 1);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + duration);
+                } catch(e) {}
+            }
+
+            toggle() {
+                this.init();
+                if (this.ctx.state === 'suspended') {
+                    this.ctx.resume();
+                }
+
+                this.isPlaying = !this.isPlaying;
+
+                if (this.isPlaying) {
+                    this.playChord();
+                } else {
+                    clearTimeout(this.timer);
+                }
+
+                return this.isPlaying;
+            }
+        }
+        const audioBtn = document.getElementById('audioBtn');
+const audioIcon = document.getElementById('audioIcon');
+const audioText = document.getElementById('audioText');
+const bgAudio = document.getElementById('bgMusic');
+
+if (audioBtn && bgAudio) {
+    audioBtn.addEventListener('click', () => {
+        if (bgAudio.paused) {
+            bgAudio.play();
+            audioText.textContent = "Pause Music";
+            audioIcon.className = "fa-solid fa-volume-high text-amber-400 group-hover:rotate-12 transition-transform";
+            audioBtn.classList.add('border-amber-400');
+        } else {
+            bgAudio.pause();
+            audioText.textContent = "Play Music";
+            audioIcon.className = "fa-solid fa-music text-amber-400 group-hover:rotate-12 transition-transform";
+            audioBtn.classList.remove('border-amber-400');
+        }
+    });
+}
+
+        
+        const bgCanvas = document.getElementById('bgCanvas');
+        const bgCtx = bgCanvas.getContext('2d');
+
+        let bgWidth, bgHeight;
+        let bgParticles = [];
+        let mouseX = 0, mouseY = 0;
+
+        function resizeBg() {
+            bgWidth = bgCanvas.width = window.innerWidth;
+            bgHeight = bgCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeBg);
+        resizeBg();
+
+        class BgParticle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * bgWidth;
+                this.y = Math.random() * bgHeight;
+                this.size = Math.random() * 2 + 0.5;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3 - 0.2; // slight upward drift
+                this.alpha = Math.random() * 0.5 + 0.1;
+                this.hue = Math.random() > 0.5 ? 45 : 35; // Golden amber tones
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+            
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 150) {
+                    this.x -= (dx / dist) * 0.5;
+                    this.y -= (dy / dist) * 0.5;
+                }
+
+                if (this.x < 0 || this.x > bgWidth || this.y < 0 || this.y > bgHeight) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                bgCtx.save();
+                bgCtx.beginPath();
+                bgCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                bgCtx.fillStyle = `hsla(${this.hue}, 90%, 65%, ${this.alpha})`;
+                bgCtx.shadowBlur = 8;
+                bgCtx.shadowColor = `hsl(${this.hue}, 90%, 50%)`;
+                bgCtx.fill();
+                bgCtx.restore();
+            }
+        }
+
+        for (let i = 0; i < 70; i++) {
+            bgParticles.push(new BgParticle());
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+
+        
+        const flowerCanvas = document.getElementById('flowerCanvas');
+        const ctx = flowerCanvas.getContext('2d');
+
+        let cWidth, cHeight;
+        let flowerParticles = [];
+        let cursorSparks = [];
+        let isHovered = false;
+        let mouseCanvasX = 0, mouseCanvasY = 0;
+
+        function initFlowerCanvasSize() {
+            const rect = flowerCanvas.getBoundingClientRect();
+            flowerCanvas.width = rect.width;
+            flowerCanvas.height = rect.height;
+            cWidth = flowerCanvas.width;
+            cHeight = flowerCanvas.height;
+            generateFlowerTargets();
+        }
+
+        
+        class FlowerParticle {
+            constructor(targetX, targetY, color) {
+                this.targetX = targetX;
+                this.targetY = targetY;
+
+            
+                this.x = cWidth / 2 + (Math.random() - 0.5) * cWidth * 1.5;
+                this.y = cHeight / 2 + (Math.random() - 0.5) * cHeight * 1.5;
+
+                this.vx = 0;
+                this.vy = 0;
+                this.radius = Math.random() * 2 + 1.2;
+                this.color = color;
+                this.ease = Math.random() * 0.04 + 0.03;
+                this.friction = 0.88;
+            }
+
+            update() {
+            
+                const dx = this.targetX - this.x;
+                const dy = this.targetY - this.y;
+
+                this.vx += dx * this.ease * 0.1;
+                this.vy += dy * this.ease * 0.1;
+
+                
+                if (isHovered) {
+                    const mdx = this.x - mouseCanvasX;
+                    const mdy = this.y - mouseCanvasY;
+                    const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+                    if (mdist < 70) {
+                        const force = (70 - mdist) / 70;
+                        this.vx += (mdx / mdist) * force * 3;
+                        this.vy += (mdy / mdist) * force * 3;
+                    }
+                }
+
+                this.vx *= this.friction;
+                this.vy *= this.friction;
+
+                this.x += this.vx;
+                this.y += this.vy;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        
+        function generateFlowerTargets() {
+            flowerParticles = [];
+            const centerX = cWidth / 2;
+            const centerY = cHeight / 2 - 10;
+            const scale = Math.min(cWidth, cHeight) * 0.22;
+
+            
+            const numPetals = 6;
+            const totalPoints = 650;
+
+            for (let i = 0; i < totalPoints; i++) {
+                const theta = (i / totalPoints) * Math.PI * 12; // Multiple full rotations for layer depth
+                const rFactor = Math.sin((numPetals / 2) * theta);
+                const r = scale * (0.3 + 0.7 * Math.abs(rFactor));
+
+                const x = centerX + r * Math.cos(theta);
+                const y = centerY + r * Math.sin(theta);
+
+            
+                let color;
+                const randColor = Math.random();
+                if (randColor > 0.6) {
+                    color = `hsl(${40 + Math.random() * 15}, 100%, 65%)`; // Gold
+                } else if (randColor > 0.2) {
+                    color = `hsl(${350 + Math.random() * 25}, 90%, 65%)`; // Warm Rose
+                } else {
+                    color = `hsl(${25 + Math.random() * 15}, 100%, 75%)`; // Warm Peach
+                }
+
+                flowerParticles.push(new FlowerParticle(x, y, color));
+            }
+
+        
+            const stemPoints = 120;
+            for (let i = 0; i < stemPoints; i++) {
+                const progress = i / stemPoints;
+                const sx = centerX + Math.sin(progress * 4) * 8;
+                const sy = centerY + scale * 0.8 + progress * (scale * 0.9);
+                const color = `hsl(${130 + Math.random() * 30}, 60%, ${45 + Math.random() * 20}%)`;
+                flowerParticles.push(new FlowerParticle(sx, sy, color));
+            }
+        }
+
+    
+        class CursorSpark {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 4;
+                this.vy = (Math.random() - 0.5) * 4;
+                this.alpha = 1;
+                this.color = `hsl(${40 + Math.random() * 20}, 100%, 70%)`;
+                this.size = Math.random() * 3 + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.alpha -= 0.03;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, this.alpha);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        
+        flowerCanvas.addEventListener('mouseenter', () => isHovered = true);
+        flowerCanvas.addEventListener('mouseleave', () => isHovered = false);
+        flowerCanvas.addEventListener('mousemove', (e) => {
+            const rect = flowerCanvas.getBoundingClientRect();
+            mouseCanvasX = e.clientX - rect.left;
+            mouseCanvasY = e.clientY - rect.top;
+
+            
+            if (Math.random() > 0.4) {
+                cursorSparks.push(new CursorSpark(mouseCanvasX, mouseCanvasY));
+            }
+        });
+
+        flowerCanvas.addEventListener('click', (e) => {
+            const rect = flowerCanvas.getBoundingClientRect();
+            const cx = e.clientX - rect.left;
+            const cy = e.clientY - rect.top;
+
+            
+            for (let i = 0; i < 25; i++) {
+                cursorSparks.push(new CursorSpark(cx, cy));
+            }
+        });
+
+        document.getElementById('rearrangeBtn').addEventListener('click', () => {
+            
+            flowerParticles.forEach(p => {
+                p.x = cWidth / 2 + (Math.random() - 0.5) * cWidth * 1.5;
+                p.y = cHeight / 2 + (Math.random() - 0.5) * cHeight * 1.5;
+            });
+        });
+
+
+       
+        let fireworks = [];
+
+        class FireworkParticle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 6 + 2;
+                this.vx = Math.cos(angle) * speed;
+                this.vy = Math.sin(angle) * speed;
+                this.gravity = 0.08;
+                this.alpha = 1;
+                this.decay = Math.random() * 0.02 + 0.015;
+                this.hue = Math.random() * 60 + 20; // Vibrant Gold/Red/Amber
+            }
+
+            update() {
+                this.vx *= 0.96;
+                this.vy *= 0.96;
+                this.vy += this.gravity;
+                this.x += this.vx;
+                this.y += this.vy;
+                this.alpha -= this.decay;
+            }
+
+            draw() {
+                bgCtx.save();
+                bgCtx.globalAlpha = Math.max(0, this.alpha);
+                bgCtx.beginPath();
+                bgCtx.arc(this.x, this.y, 2.5, 0, Math.PI * 2);
+                bgCtx.fillStyle = `hsl(${this.hue}, 100%, 65%)`;
+                bgCtx.shadowBlur = 12;
+                bgCtx.shadowColor = `hsl(${this.hue}, 100%, 50%)`;
+                bgCtx.fill();
+                bgCtx.restore();
+            }
+        }
+
+        function triggerCelebration() {
+            const burstPoints = [
+                { x: bgWidth * 0.25, y: bgHeight * 0.3 },
+                { x: bgWidth * 0.75, y: bgHeight * 0.3 },
+                { x: bgWidth * 0.5, y: bgHeight * 0.2 },
+                { x: bgWidth * 0.35, y: bgHeight * 0.5 },
+                { x: bgWidth * 0.65, y: bgHeight * 0.5 }
+            ];
+
+            burstPoints.forEach((pt, index) => {
+                setTimeout(() => {
+                    for (let i = 0; i < 60; i++) {
+                        fireworks.push(new FireworkParticle(pt.x, pt.y));
+                    }
+                }, index * 180);
+            });
+        }
+
+        document.getElementById('celebrateBtn').addEventListener('click', triggerCelebration);
+
+
+       
+        const messageText = "I love you so much, and I wish you a very beautiful year filled with success, happiness, health, and all your greatest dreams coming true!";
+        const typedMessageEl = document.getElementById('typedMessage');
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (charIndex < messageText.length) {
+                typedMessageEl.textContent += messageText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 35);
+            } else {
+                
+                setTimeout(() => {
+                    typedMessageEl.classList.remove('cursor-blink');
+                }, 2000);
+            }
+        }
+
+
+        
+        
+        function animate() {
+        
+            bgCtx.clearRect(0, 0, bgWidth, bgHeight);
+            
+            bgParticles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            
+            for (let i = fireworks.length - 1; i >= 0; i--) {
+                const fw = fireworks[i];
+                fw.update();
+                fw.draw();
+                if (fw.alpha <= 0) {
+                    fireworks.splice(i, 1);
+                }
+            }
+
+            
+            ctx.clearRect(0, 0, cWidth, cHeight);
+
+            
+            ctx.save();
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.08)';
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i < flowerParticles.length; i += 6) {
+                const p1 = flowerParticles[i];
+                const p2 = flowerParticles[(i + 1) % flowerParticles.length];
+                const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+                if (dist < 25) {
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+                }
+            }
+            ctx.restore();
+
+        
+            flowerParticles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            
+            for (let i = cursorSparks.length - 1; i >= 0; i--) {
+                const s = cursorSparks[i];
+                s.update();
+                s.draw();
+                if (s.alpha <= 0) {
+                    cursorSparks.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+
+       
+        
+        window.onload = () => {
+            initFlowerCanvasSize();
+            animate();
+
+        
+            setTimeout(typeWriter, 600);
+        };
+
+        window.addEventListener('resize', () => {
+            initFlowerCanvasSize();
+        });
+    </script>
+</body>
+</html>
